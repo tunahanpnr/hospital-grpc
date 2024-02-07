@@ -8,8 +8,8 @@ This project is a sample hospital system implementation of a gRPC (Remote Proced
 
 - [Prerequisites](#prerequisites)
 - [Setup](#setup)
-- [Project Structure](#project-structure)
 - [Running the Application](#running-the-application)
+- [Init mock data](#init-mock-data)
 
 ## Prerequisites
 
