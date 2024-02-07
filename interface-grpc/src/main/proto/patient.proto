@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.avelios.grpc";
+option java_outer_classname = "PatientProto";
+
+service PatientService {
+  rpc CreatePatient (CreatePatientRequest) returns (CreatePatientResponse);
+  rpc GetPatient (GetPatientRequest) returns (GetPatientResponse);
+  rpc GetAllPatients (GetAllPatientsRequest) returns (GetAllPatientsResponse);
+  rpc UpdatePatient (UpdatePatientRequest) returns (UpdatePatientResponse);
+  rpc DeletePatient (DeletePatientRequest) returns (DeletePatientResponse);
+}
+
+message Patient {
+  int64 id = 1;
+  string name = 2;
+  int32 age = 3;
+  string sex = 4;
+  string address = 5;
+  string phone = 6;
+  string diagnosis = 7;
+}
+
+message GetPatientRequest {
+  int64 id = 1;
+}
+
+message GetPatientResponse {
+  Patient patient = 1;
+}
+
+message GetAllPatientsRequest {
+  int64 id = 1;
+}
+
+message GetAllPatientsResponse {
+  repeated Patient patient = 1;
+}
+
+message CreatePatientRequest {
+  Patient patient = 1;
+}
+
+message CreatePatientResponse {
+  bool success = 1;
+}
+
+message UpdatePatientRequest {
+  Patient patient = 1;
+}
+
+message UpdatePatientResponse {
+  bool success = 1;
+}
+
+message DeletePatientRequest {
+  int64 id = 1;
+}
+
+message DeletePatientResponse {
+  bool success = 1;
+}

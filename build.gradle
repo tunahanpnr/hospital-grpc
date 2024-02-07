@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.2'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id "io.freefair.lombok" version "8.4"
+}
+
+group = 'com.avelios'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    runtimeOnly 'com.h2database:h2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation 'net.devh:grpc-spring-boot-starter:2.15.0.RELEASE'
+    implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
+
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+
+    implementation project(':interface-grpc')
+
+    testImplementation 'io.grpc:grpc-testing:1.61.1'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

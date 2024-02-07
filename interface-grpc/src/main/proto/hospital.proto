@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+import "patient.proto";
+
+option java_multiple_files = true;
+option java_package = "com.avelios.grpc";
+option java_outer_classname = "HospitalProto";
+
+service HospitalService {
+  rpc CreateHospital (CreateHospitalRequest) returns (CreateHospitalResponse);
+  rpc GetHospital (GetHospitalRequest) returns (GetHospitalResponse);
+  rpc GetAllHospitals (GetAllHospitalsRequest) returns (GetAllHospitalsResponse);
+  rpc UpdateHospital (UpdateHospitalRequest) returns (UpdateHospitalResponse);
+  rpc DeleteHospital (DeleteHospitalRequest) returns (DeleteHospitalResponse);
+  rpc RegisterPatient (RegisterPatientRequest) returns (RegisterPatientResponse);
+  rpc GetPatientsOfHospital (GetPatientsOfHospitalRequest) returns (GetPatientsOfHospitalResponse);
+  rpc GetHospitalsOfPatient (GetHospitalsOfPatientRequest) returns (GetHospitalsOfPatientResponse);
+}
+
+message Hospital {
+  int64 id = 1;
+  string name = 2;
+  string address = 3;
+  string phone = 4;
+  int32 doctor_count = 5;
+  int32 nurse_count = 6;
+  int32 outpatient_capacity = 7;
+  int32 inpatient_capacity = 8;
+}
+
+message GetHospitalRequest {
+  int64 id = 1;
+}
+
+message GetHospitalResponse {
+  Hospital hospital = 1;
+}
+
+message GetAllHospitalsRequest {
+}
+
+message GetAllHospitalsResponse {
+  repeated Hospital hospitals = 1;
+}
+
+message CreateHospitalRequest {
+  Hospital hospital = 1;
+}
+
+message CreateHospitalResponse {
+  bool success = 1;
+}
+
+message UpdateHospitalRequest {
+  Hospital hospital = 1;
+}
+
+message UpdateHospitalResponse {
+  bool success = 1;
+}
+
+message DeleteHospitalRequest {
+  int64 id = 1;
+}
+
+message DeleteHospitalResponse {
+  bool success = 1;
+}
+
+message RegisterPatientRequest {
+  int64 patientId = 1;
+  int64 hospitalId = 2;
+}
+
+message RegisterPatientResponse {
+  bool success = 1;
+}
+
+message GetPatientsOfHospitalRequest {
+  int64 id = 2;
+}
+
+message GetPatientsOfHospitalResponse {
+  repeated Patient patients = 1;
+}
+
+message GetHospitalsOfPatientRequest {
+  int64 id = 2;
+}
+
+message GetHospitalsOfPatientResponse {
+  repeated Hospital hospitals = 1;
+}
